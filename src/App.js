@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import NotificationBar from './components/NotificationBar';
 import Footer from './components/Footer';
 import LuckyDraw from './components/LuckyDraw';
+import FeedbackForm from './components/FeedbackForm';
 import { Fragment, useState } from 'react';
 
 const MOVIES = [
@@ -69,8 +70,9 @@ function App() {
               </div>
             </div>
           </section>
-
+          <h2 className="text-2xl mb-6 font-bold"> Contests </h2>
           <LuckyDraw userName="John Doe" />
+          <FeedbackForm />
         </div>
 
         <Footer />

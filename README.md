@@ -69,4 +69,6 @@ import carImage from './path';
 ```
 
 - Fragments & its need.
--
+- What is ref? What is its need?
+- Affect DOM directly. Dont do DOM manipulation with ref.
+- If the requirement is to just read the value, refs are better. But the input becomes uncontrolled component.

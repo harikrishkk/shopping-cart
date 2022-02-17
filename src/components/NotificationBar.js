@@ -9,7 +9,7 @@ const NotificationBar = ({ message, type, onClose }) => {
     <div className={classes}>
       <div className="flex w-full justify-between">
         <span className="text-slate-900">{message}</span>
-        <div onClick={onClose} class="cursor-pointer badge badge-lg">
+        <div onClick={onClose} className="cursor-pointer badge badge-lg">
           x
         </div>
       </div>
