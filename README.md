@@ -78,3 +78,14 @@ import carImage from './path';
 - Till now, we dealt with static contents. But there are async stuffs that happen.
 - useState rerenders the component.
 - API calls, network requests, timeouts, intervals, storage etc
+
+## UseReducer and api calls with Load more
+
+- Instead of useState, we did the useReducer
+- when to use what
+- So what about Context ? ( app wide state )
+
+## Review time
+
+- Find areas of improvement in the code we wrote till now.
+- Note down all the suggestions

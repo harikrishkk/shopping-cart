@@ -5,6 +5,7 @@ import NotificationBar from './components/NotificationBar';
 import Footer from './components/Footer';
 import LuckyDraw from './components/LuckyDraw';
 import FeedbackForm from './components/FeedbackForm';
+import AppUsers from './components/users/AppUsers';
 import { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -85,6 +86,8 @@ function App() {
           <h2 className="text-2xl mb-6 font-bold"> Contests </h2>
           <LuckyDraw userName="John Doe" />
           <FeedbackForm />
+          <h2 className="text-2xl mb-6 font-bold"> Users </h2>
+          <AppUsers />
         </div>
 
         <Footer />
