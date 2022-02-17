@@ -44,3 +44,29 @@
 - pass data down as props
 - Conditionally show content
 - Add Responsive layouts.
+
+## Key points till now
+
+- Updater fn is async & a call to this fn will re-render the component
+- hooks should be called at the top level of the component. ( not within nested conditions )
+- State updates are always scheduled.
+- State lifting
+- controlled vs uncontrolled components
+- setState object syntax vs function syntax
+- State flows down, events flow up
+- We pass pointers to functions
+- why is passing events up, changing the state in parent component & passing the new value down as prop recommended?
+- styling - will be looked into it later. `styles.module.scss` and import them.
+  `import styles from './styles.module.scss'`
+- CSS in JS, styled components.
+- scoped styles & dynamically adding props.
+- To add images, just import them like any other file.
+
+```
+import carImage from './path';
+
+<img src={carImage}>
+```
+
+- Fragments & its need.
+-

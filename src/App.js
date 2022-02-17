@@ -2,7 +2,9 @@ import './App.css';
 import MovieCard from './components/MovieCard';
 import Navbar from './components/Navbar';
 import NotificationBar from './components/NotificationBar';
-import { useState } from 'react';
+import Footer from './components/Footer';
+import LuckyDraw from './components/LuckyDraw';
+import { Fragment, useState } from 'react';
 
 const MOVIES = [
   {
@@ -39,34 +41,41 @@ function App() {
   const handleClose = () => {
     setSelectedMovie(null);
   };
+
   return (
-    <div className="bg-slate-100">
-      <Navbar />
-      <div className="container mx-auto min-h-screen">
-        {selectedMovie && (
-          <NotificationBar
-            onClose={handleClose}
-            message={`You selected → ${selectedMovie.title}`}
-          />
-        )}
-        <section className="text-gray-600 body-font">
-          <div className="container px-5 py-24 mx-auto">
-            <h2 className="text-2xl mb-8 font-bold"> Movies </h2>
-            <div className="flex flex-wrap -m-4">
-              {movies.map((movie) => {
-                return (
-                  <MovieCard
-                    key={movie.id}
-                    movie={movie}
-                    onMovieSelect={handleMovieSelect}
-                  />
-                );
-              })}
+    <Fragment>
+      <div className="bg-slate-100 min-h-screen flex grow flex-col">
+        <Navbar />
+        <div className="container mx-auto grow">
+          {selectedMovie && (
+            <NotificationBar
+              onClose={handleClose}
+              message={`You selected → ${selectedMovie.title}`}
+            />
+          )}
+          <section className="text-gray-600 body-font">
+            <div className="container px-5 py-24 mx-auto">
+              <h2 className="text-2xl mb-8 font-bold"> Movies </h2>
+              <div className="flex flex-wrap -m-4">
+                {movies.map((movie) => {
+                  return (
+                    <MovieCard
+                      key={movie.id}
+                      movie={movie}
+                      onMovieSelect={handleMovieSelect}
+                    />
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+
+          <LuckyDraw userName="John Doe" />
+        </div>
+
+        <Footer />
       </div>
-    </div>
+    </Fragment>
   );
 }
 
