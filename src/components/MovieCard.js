@@ -1,8 +1,9 @@
 import React from 'react';
 import LinkButton from './LinkButton';
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, onMovieSelect }) => {
   const { title, posterURL, imdbId, isNewRelease } = movie;
+
   return (
     <div className="p-4 md:w-1/3">
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
@@ -17,7 +18,7 @@ const MovieCard = ({ movie }) => {
           </h1>
           <p className="leading-relaxed mb-3">IMDB id: {imdbId}</p>
           <div className="flex items-center flex-wrap ">
-            <LinkButton />
+            <LinkButton handleClick={() => onMovieSelect(movie)} />
           </div>
         </div>
       </div>
