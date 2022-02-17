@@ -36,3 +36,11 @@
 - Smart / dumb components or Container / Presentation components
 - Add proptypes `https://www.npmjs.com/package/prop-types`
 - We start with functional components first, since that will be the "go to" approach moving forward
+
+## Create Navbar, MovieCard, State
+
+- `https://www.sampleapis.com/api-list/movies`
+- Create a top level state
+- pass data down as props
+- Conditionally show content
+- Add Responsive layouts.
