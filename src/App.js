@@ -5,7 +5,7 @@ import NotificationBar from './components/NotificationBar';
 import Footer from './components/Footer';
 import LuckyDraw from './components/LuckyDraw';
 import FeedbackForm from './components/FeedbackForm';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 
 const MOVIES = [
   {
@@ -34,7 +34,7 @@ const MOVIES = [
   },
 ];
 function App() {
-  const [movies, setMovies] = useState(MOVIES);
+  const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const handleMovieSelect = (movie) => {
     setSelectedMovie(movie);
@@ -42,6 +42,16 @@ function App() {
   const handleClose = () => {
     setSelectedMovie(null);
   };
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setMovies(MOVIES);
+    }, 2000);
+    return () => {
+      console.log('Clean up before next cycle');
+      clearTimeout(id);
+    };
+  }, []);
 
   return (
     <Fragment>
@@ -57,16 +67,22 @@ function App() {
           <section className="text-gray-600 body-font">
             <div className="container px-5 py-24 mx-auto">
               <h2 className="text-2xl mb-8 font-bold"> Movies </h2>
+              {movies.length === 0 && (
+                <h1 className="btn bg-transparent text-black border-transparent loading">
+                  Loading...
+                </h1>
+              )}
               <div className="flex flex-wrap -m-4">
-                {movies.map((movie) => {
-                  return (
-                    <MovieCard
-                      key={movie.id}
-                      movie={movie}
-                      onMovieSelect={handleMovieSelect}
-                    />
-                  );
-                })}
+                {movies.length > 0 &&
+                  movies.map((movie) => {
+                    return (
+                      <MovieCard
+                        key={movie.id}
+                        movie={movie}
+                        onMovieSelect={handleMovieSelect}
+                      />
+                    );
+                  })}
               </div>
             </div>
           </section>

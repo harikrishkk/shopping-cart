@@ -72,3 +72,9 @@ import carImage from './path';
 - What is ref? What is its need?
 - Affect DOM directly. Dont do DOM manipulation with ref.
 - If the requirement is to just read the value, refs are better. But the input becomes uncontrolled component.
+
+## Side effects
+
+- Till now, we dealt with static contents. But there are async stuffs that happen.
+- useState rerenders the component.
+- API calls, network requests, timeouts, intervals, storage etc
