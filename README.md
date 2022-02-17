@@ -29,3 +29,10 @@
 - Need to return one root element
 - Component is just a function that returns JSX
 - Component encapsulates HTML, CSS and JS. Name starts with uppercase.
+
+## Pass inputs
+
+- We created props and children
+- Smart / dumb components or Container / Presentation components
+- Add proptypes `https://www.npmjs.com/package/prop-types`
+- We start with functional components first, since that will be the "go to" approach moving forward
