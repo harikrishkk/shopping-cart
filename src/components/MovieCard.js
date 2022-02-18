@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import LinkButton from './LinkButton';
 import AuthContext from '@context/auth-context';
 
 const MovieCard = ({ movie, onMovieSelect }) => {
   const { isAuthenticated } = useContext(AuthContext);
   const { title, posterURL, imdbId, isNewRelease } = movie;
+
+  useEffect(() => {
+    console.log('Inside MovieCard component.');
+  });
 
   return (
     <div className="p-4 md:w-1/3">
@@ -30,4 +34,4 @@ const MovieCard = ({ movie, onMovieSelect }) => {
   );
 };
 
-export default MovieCard;
+export default React.memo(MovieCard);

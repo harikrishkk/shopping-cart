@@ -6,9 +6,7 @@ const LuckyDraw = ({ userName }) => {
   const toggleModal = () => {
     setIsOpen((open) => !open);
   };
-  useEffect(() => {
-    console.log('Inside LuckyDraw component.');
-  });
+
   const classes = isOpen ? 'modal modal-open' : 'modal';
   const content = (
     <div className={classes}>

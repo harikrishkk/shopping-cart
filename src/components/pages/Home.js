@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import NotificationBar from '@shared/NotificationBar';
 import MovieCard from '@components/MovieCard';
 import Banner from '@shared/Banner';
@@ -10,12 +10,20 @@ const Home = () => {
   const [pages, setPages] = useState(1);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [likes, setLikes] = useState(458);
 
-  const handleMovieSelect = (movie) => {
-    setSelectedMovie(movie);
-  };
+  const handleMovieSelect = useCallback(
+    (movie) => {
+      setSelectedMovie(movie);
+    },
+    [selectedMovie]
+  );
   const handleClose = () => {
     setSelectedMovie(null);
+  };
+
+  const joinContest = () => {
+    setLikes((like) => like + 1);
   };
 
   const loadMore = () => {
@@ -77,8 +85,16 @@ const Home = () => {
             </button>
           </div>
           <div className="divider"></div>
-          <h2 className="text-2xl mb-6 font-bold"> Contests </h2>
-          <LuckyDraw userName="John Doe" />
+          <h2 className="text-2xl mb-3 font-bold"> Contests </h2>
+          <p className="mb-3">
+            Already we have <strong>{likes}</strong> entries! Join now
+          </p>
+          <div className="flex justify-start">
+            <LuckyDraw userName="John Doe" />
+            <button onClick={joinContest} className="ml-4 btn btn-sm">
+              Join!
+            </button>
+          </div>
         </div>
       </section>
     </div>
