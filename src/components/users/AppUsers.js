@@ -1,7 +1,7 @@
-import React, { useEffect, useReducer } from 'react';
-import axios from 'axios';
 import { INIT_STATE, reducer } from './reducer';
 import AppUser from './AppUser';
+import axios from 'axios';
+import React, { useEffect, useReducer } from 'react';
 
 const AppUsers = () => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
@@ -25,7 +25,7 @@ const AppUsers = () => {
       });
   }, [state.page]);
 
-  const { users, totalPages, page, perPage } = state;
+  const { users, totalPages, page } = state;
 
   const paginate = () => {
     dispatch({
@@ -46,7 +46,7 @@ const AppUsers = () => {
         </div>
         <div className="flex justify-center align-center mt-8">
           <div className="btn-group">
-            {state.page < state.totalPages && (
+            {page < totalPages && (
               <button onClick={paginate} className="btn btn-sm">
                 Load More
               </button>

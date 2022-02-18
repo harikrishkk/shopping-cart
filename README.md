@@ -89,3 +89,16 @@ import carImage from './path';
 
 - Find areas of improvement in the code we wrote till now.
 - Note down all the suggestions
+
+- The import paths isnt clean.
+- Add craco config
+- `https://www.npmjs.com/package/@craco/craco`
+- Can divide components based on its use and functionality
+- Needs a restart when we add more alias
+- Too much content in App.js
+- Can split them into various pages.
+- In footer, we can divide the social media icons into its own components ( future )
+- comment the code if needed
+- Plugin to sort imports ascending
+- Dont use strings littered around the app.
+- See if there is any reason to life the state to parent components

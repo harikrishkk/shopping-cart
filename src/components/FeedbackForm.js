@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import NotificationBar from './NotificationBar';
+import NotificationBar from '@shared/NotificationBar';
 
 const FeedbackForm = () => {
   const nameRef = useRef();

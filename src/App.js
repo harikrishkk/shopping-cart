@@ -1,11 +1,11 @@
 import './App.css';
-import MovieCard from './components/MovieCard';
-import Navbar from './components/Navbar';
-import NotificationBar from './components/NotificationBar';
-import Footer from './components/Footer';
-import LuckyDraw from './components/LuckyDraw';
-import FeedbackForm from './components/FeedbackForm';
-import AppUsers from './components/users/AppUsers';
+import MovieCard from '@components/MovieCard';
+import Navbar from '@shared/Navbar';
+import NotificationBar from '@shared/NotificationBar';
+import Footer from '@shared/Footer';
+import LuckyDraw from '@components/LuckyDraw';
+import FeedbackForm from '@components/FeedbackForm';
+import AppUsers from '@components/users/AppUsers';
 import { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
