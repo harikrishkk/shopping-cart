@@ -22,14 +22,14 @@ const Navbar = () => {
           </li>
           {isAuthenticated && (
             <li>
-              <button onClick={signout} class="btn btn-link">
+              <button onClick={signout} className="btn btn-link">
                 Logout
               </button>
             </li>
           )}
           {!isAuthenticated && (
             <li>
-              <button onClick={login} class="btn btn-link">
+              <button onClick={login} className="btn btn-link">
                 Login
               </button>
             </li>

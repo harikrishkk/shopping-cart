@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 const LuckyDraw = ({ userName }) => {
@@ -6,6 +6,9 @@ const LuckyDraw = ({ userName }) => {
   const toggleModal = () => {
     setIsOpen((open) => !open);
   };
+  useEffect(() => {
+    console.log('Inside LuckyDraw component.');
+  });
   const classes = isOpen ? 'modal modal-open' : 'modal';
   const content = (
     <div className={classes}>
@@ -35,4 +38,4 @@ const LuckyDraw = ({ userName }) => {
   );
 };
 
-export default LuckyDraw;
+export default React.memo(LuckyDraw);
