@@ -25,11 +25,7 @@ const LuckyDraw = ({ userName }) => {
   );
   return (
     <div>
-      <label
-        onClick={toggleModal}
-        htmlFor="my-modal"
-        className="btn modal-button"
-      >
+      <label onClick={toggleModal} htmlFor="my-modal" className="btn btn-sm">
         Lucky Draw
       </label>
       {/* <input type="checkbox" id="my-modal" className="modal-toggle" /> */}

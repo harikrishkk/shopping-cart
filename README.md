@@ -102,3 +102,18 @@ import carImage from './path';
 - Plugin to sort imports ascending
 - Dont use strings littered around the app.
 - See if there is any reason to life the state to parent components
+
+## Context
+
+- Now the state of the application is littered around
+- App.js has movies related slice
+- AppUsers contain the user slice data
+- When we need state that needs to be shared throughout the app, and if that state is not changed / updated often, then context is a good alternative
+- Different components have different axios calls, need to be a unified one.
+- When we refactor, the craco aliases come in handy
+
+## Routing
+
+- We splitted the whole app into routes
+- Now app looks good, but open the network tab and switch back and forth.
+- We get to see the requests being sent on each route change.
