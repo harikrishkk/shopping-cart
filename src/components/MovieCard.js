@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import LinkButton from './LinkButton';
+import AuthContext from '@context/auth-context';
 
 const MovieCard = ({ movie, onMovieSelect }) => {
+  const { isAuthenticated } = useContext(AuthContext);
   const { title, posterURL, imdbId, isNewRelease } = movie;
 
   return (
@@ -18,7 +20,9 @@ const MovieCard = ({ movie, onMovieSelect }) => {
           </h1>
           <p className="leading-relaxed mb-3">IMDB id: {imdbId}</p>
           <div className="flex items-center flex-wrap ">
-            <LinkButton handleClick={() => onMovieSelect(movie)} />
+            {isAuthenticated && (
+              <LinkButton handleClick={() => onMovieSelect(movie)} />
+            )}
           </div>
         </div>
       </div>

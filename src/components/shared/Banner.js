@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AuthContext from '@context/auth-context';
 
 const Banner = () => {
+  const { isAuthenticated } = useContext(AuthContext);
   return (
     <div className="py-16 mx-auto sm:max-w-xl md:max-w-full lg:py-20 bg-indigo-600">
       <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
@@ -56,12 +58,14 @@ const Banner = () => {
             </p>
           </div>
           <div>
-            <a
-              href="/"
-              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-black transition duration-200 rounded shadow-md bg-white hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-            >
-              Read More
-            </a>
+            {isAuthenticated && (
+              <a
+                href="/"
+                className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-black transition duration-200 rounded shadow-md bg-white hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+              >
+                Read More
+              </a>
+            )}
           </div>
         </div>
       </div>

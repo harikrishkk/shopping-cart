@@ -117,3 +117,6 @@ import carImage from './path';
 - We splitted the whole app into routes
 - Now app looks good, but open the network tab and switch back and forth.
 - We get to see the requests being sent on each route change.
+
+- We added a COntext, wrapped them in a common component
+- We hide the buttons and links if the user is not authorized

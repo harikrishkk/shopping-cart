@@ -8,10 +8,11 @@ import Home from '@pages/Home';
 import Users from '@pages/Users';
 import About from '@pages/About';
 import NoFound from '@shared/NoFound';
+import AuthWrapper from '@shared/AuthWrapper';
 
 function App() {
   return (
-    <Fragment>
+    <AuthWrapper>
       <BrowserRouter>
         <div className="bg-slate-100 min-h-screen flex grow flex-col">
           <Navbar />
@@ -24,7 +25,7 @@ function App() {
         </div>
         <Footer />
       </BrowserRouter>
-    </Fragment>
+    </AuthWrapper>
   );
 }
 

@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '@context/auth-context';
 
 const Navbar = () => {
+  const { isAuthenticated, login, signout } = useContext(AuthContext);
   return (
     <div className="navbar justify-between bg-base-100">
       <div className="navbar-start">
@@ -18,6 +20,20 @@ const Navbar = () => {
           <li>
             <Link to="/about"> About Us </Link>
           </li>
+          {isAuthenticated && (
+            <li>
+              <button onClick={signout} class="btn btn-link">
+                Logout
+              </button>
+            </li>
+          )}
+          {!isAuthenticated && (
+            <li>
+              <button onClick={login} class="btn btn-link">
+                Login
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </div>
