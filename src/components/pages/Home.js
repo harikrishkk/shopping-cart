@@ -3,29 +3,40 @@ import NotificationBar from '@shared/NotificationBar';
 import MovieCard from '@components/MovieCard';
 import Banner from '@shared/Banner';
 import LuckyDraw from '@components/LuckyDraw';
-import useHttp from '@hooks/use-http';
+import {
+  loadAllMovies,
+  paginateMovies,
+  selectCurrentMovie,
+} from '@state/movies/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectAllMovies,
+  selectMovieLoadingStatus,
+  selectAllMoviesLoaded,
+  selectMovieById,
+  selectInitialLoad,
+} from '@state/movies/moviesReducer';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
-  const [totalMovies, setTotalMovies] = useState(0);
-  const [pages, setPages] = useState(1);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [isDisabled, setIsDisabled] = useState(false);
+  // Local state
+  const [movieId, setMovieId] = useState(null);
   const [likes, setLikes] = useState(458);
-  const [api, setApi] = useState(false);
 
-  const {
-    state: { data, loading },
-  } = useHttp('https://api.sampleapis.com/movies/animation', api);
+  // Selectors
+  const movies = useSelector(selectAllMovies);
+  const isLoading = useSelector(selectMovieLoadingStatus);
+  const allMoviesLoaded = useSelector(selectAllMoviesLoaded);
+  const selectedMovie = useSelector(selectMovieById);
+  const isInitialLoad = useSelector(selectInitialLoad);
+  // Action dispatcher
+  const dispatch = useDispatch();
 
-  const handleMovieSelect = useCallback(
-    (movie) => {
-      setSelectedMovie(movie);
-    },
-    [selectedMovie]
-  );
+  const handleMovieSelect = (movie) => {
+    setMovieId(movie.id);
+  };
+
   const handleClose = () => {
-    setSelectedMovie(null);
+    setMovieId(null);
   };
 
   const joinContest = () => {
@@ -33,49 +44,34 @@ const Home = () => {
   };
 
   const loadMore = () => {
-    setPages((p) => p + 1);
+    dispatch(paginateMovies());
   };
 
-  // For movies
+  // For current movie selection
   useEffect(() => {
-    const movieData = data.slice(
-      pages === 1 ? 0 : pages * 10 + 1,
-      pages === 1 ? 10 : pages * 10 + 10
-    );
-    setTotalMovies(data.length);
-    setMovies([...movies, ...movieData]);
-    setApi(false);
-  }, [data]);
+    dispatch(selectCurrentMovie(movieId));
+  }, [movieId]);
 
-  // for triggering API call
+  // For loading all movies
   useEffect(() => {
-    setApi(true);
-  }, [pages]);
-
-  // Disabling the button
-  useEffect(() => {
-    if (
-      pages === Math.ceil(movies.length / 10) &&
-      pages === Math.floor(totalMovies / 10)
-    ) {
-      setIsDisabled(true);
+    if (isInitialLoad) {
+      dispatch(loadAllMovies());
     }
-  }, [movies, totalMovies, pages]);
+  }, []);
 
   return (
     <div>
-      {selectedMovie && (
-        <NotificationBar
-          onClose={handleClose}
-          message={`You selected → ${selectedMovie.title}`}
-        />
-      )}
       <section className="text-gray-600 body-font">
         <Banner />
         <div className="container px-5 py-12 mx-auto">
           <h2 className="text-2xl mb-8 font-bold"> Movies </h2>
-
-          {loading && (
+          {selectedMovie && (
+            <NotificationBar
+              onClose={handleClose}
+              message={`You selected → ${selectedMovie.title}`}
+            />
+          )}
+          {isLoading && (
             <h1 className="btn bg-transparent text-black border-transparent loading">
               Loading...
             </h1>
@@ -94,7 +90,7 @@ const Home = () => {
           </div>
           <div className="my-8 flex align-center justify-center">
             <button
-              disabled={isDisabled || loading}
+              disabled={allMoviesLoaded}
               onClick={loadMore}
               className="btn btn-sm"
             >

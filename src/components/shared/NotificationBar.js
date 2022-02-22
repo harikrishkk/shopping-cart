@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NotificationBar = ({ message, type, onClose }) => {
-  let classes = 'alert shadow-lg mt-8';
+  let classes = 'alert shadow-lg mt-8 mb-8';
   if (type === 'success') {
     classes += ' alert-success';
   }

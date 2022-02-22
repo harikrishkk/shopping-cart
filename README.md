@@ -120,3 +120,8 @@ import carImage from './path';
 
 - We added a COntext, wrapped them in a common component
 - We hide the buttons and links if the user is not authorized
+
+## Redux
+
+- `npm i redux redux-thunk react-redux redux-devtools-extension --save`
+- `npm i reselect --save`
