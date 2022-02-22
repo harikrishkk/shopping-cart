@@ -1,5 +1,0 @@
-export const LOAD_ALL_MOVIES = 'movies/LOAD_ALL_MOVIES';
-export const LOAD_ALL_MOVIES_SUCCESS = 'movies/LOAD_ALL_MOVIES_SUCCESS';
-export const LOAD_ALL_MOVIES_FAIL = 'movies/LOAD_ALL_MOVIES_FAIL';
-export const PAGINATE_MOVIES = 'movies/PAGINATE_MOVIES';
-export const SET_CURRENT_MOVIE = 'movies/SET_CURRENT_MOVIE';

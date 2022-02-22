@@ -125,3 +125,7 @@ import carImage from './path';
 
 - `npm i redux redux-thunk react-redux redux-devtools-extension --save`
 - `npm i reselect --save`
+
+## Redux toolkit
+
+- `npm install @reduxjs/toolkit`

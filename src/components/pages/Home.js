@@ -3,19 +3,17 @@ import NotificationBar from '@shared/NotificationBar';
 import MovieCard from '@components/MovieCard';
 import Banner from '@shared/Banner';
 import LuckyDraw from '@components/LuckyDraw';
-import {
-  loadAllMovies,
-  paginateMovies,
-  selectCurrentMovie,
-} from '@state/movies/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  loadAllMovies,
   selectAllMovies,
   selectMovieLoadingStatus,
   selectAllMoviesLoaded,
   selectMovieById,
   selectInitialLoad,
-} from '@state/movies/moviesReducer';
+  paginateMovies,
+  setCurrentMovieId,
+} from '@state/movies/moviesSlice';
 
 const Home = () => {
   // Local state
@@ -28,6 +26,7 @@ const Home = () => {
   const allMoviesLoaded = useSelector(selectAllMoviesLoaded);
   const selectedMovie = useSelector(selectMovieById);
   const isInitialLoad = useSelector(selectInitialLoad);
+
   // Action dispatcher
   const dispatch = useDispatch();
 
@@ -49,14 +48,15 @@ const Home = () => {
 
   // For current movie selection
   useEffect(() => {
-    dispatch(selectCurrentMovie(movieId));
+    dispatch(setCurrentMovieId(movieId));
   }, [movieId]);
 
   // For loading all movies
   useEffect(() => {
-    if (isInitialLoad) {
-      dispatch(loadAllMovies());
+    if (!isInitialLoad) {
+      return;
     }
+    dispatch(loadAllMovies());
   }, []);
 
   return (
