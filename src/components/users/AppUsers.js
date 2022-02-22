@@ -1,36 +1,31 @@
-import { INIT_STATE, reducer } from './reducer';
 import AppUser from './AppUser';
-import axios from 'axios';
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  loadAllUsers,
+  paginateUsers,
+  selectAllUsers,
+  selectTotalPages,
+  selectCurrentPage,
+  selectIsInitialLoad,
+} from '@state/users/usersSlice';
 
 const AppUsers = () => {
-  const [state, dispatch] = useReducer(reducer, INIT_STATE);
+  const users = useSelector(selectAllUsers);
+  const page = useSelector(selectCurrentPage);
+  const totalPages = useSelector(selectTotalPages);
+  const initialLoad = useSelector(selectIsInitialLoad);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({
-      type: 'FETCH_USER_INIT',
-    });
-    axios
-      .get(`https://reqres.in/api/users?page=${state.page}?delay=3`)
-      .then((response) => {
-        dispatch({
-          type: 'FETCH_USER_SUCCESS',
-          payload: {
-            users: response.data.data,
-            page: response.data.page,
-            perPage: response.data.per_page,
-            totalPages: response.data.total_pages,
-          },
-        });
-      });
-  }, [state.page]);
-
-  const { users, totalPages, page } = state;
+    if (initialLoad) {
+      dispatch(loadAllUsers());
+    }
+  }, []);
 
   const paginate = () => {
-    dispatch({
-      type: 'PAGINATE',
-    });
+    dispatch(paginateUsers());
+    dispatch(loadAllUsers());
   };
 
   if (!users.length) {
