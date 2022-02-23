@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import NotificationBar from '@shared/NotificationBar';
-import MovieCard from '@components/MovieCard';
+import FilterMovieDisplay from '@components/FilterMovieDisplay';
 import Banner from '@shared/Banner';
-import SearchBar from '@shared/SearchBar';
 import LuckyDraw from '@components/LuckyDraw';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -19,8 +18,7 @@ import {
 const Home = () => {
   // Local state
   const [movieId, setMovieId] = useState(null);
-  const [filteredMovies, setFilteredMovies] = useState([]);
-  const [filter, setFilter] = useState('');
+
   const [likes, setLikes] = useState(458);
 
   // Selectors
@@ -48,21 +46,11 @@ const Home = () => {
   const loadMore = () => {
     dispatch(paginateMovies());
   };
-  const onMovieFilter = (searchVal) => {
-    setFilter(searchVal);
-  };
 
   // For current movie selection
   useEffect(() => {
     dispatch(setCurrentMovieId(movieId));
   }, [movieId]);
-
-  useEffect(() => {
-    const filtered = movies.filter((m) =>
-      m.title.toLowerCase().includes(filter.toLowerCase())
-    );
-    setFilteredMovies(filtered);
-  }, [movies, filter]);
 
   // For loading all movies
   useEffect(() => {
@@ -89,19 +77,11 @@ const Home = () => {
               Loading...
             </h1>
           )}
-          <SearchBar onMovieFilter={onMovieFilter} />
-          <div className="flex flex-wrap -m-4">
-            {filteredMovies.length > 0 &&
-              filteredMovies.map((movie) => {
-                return (
-                  <MovieCard
-                    key={movie.id}
-                    movie={movie}
-                    onMovieSelect={handleMovieSelect}
-                  />
-                );
-              })}
-          </div>
+
+          <FilterMovieDisplay
+            movies={movies}
+            handleMovieSelect={handleMovieSelect}
+          />
           <div className="my-8 flex align-center justify-center">
             <button
               disabled={allMoviesLoaded}
