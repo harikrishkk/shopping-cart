@@ -41,7 +41,6 @@ export const {
 export const loadAllMovies = () => (dispatch) => {
   dispatch(loadAllMoviesInit);
   axios.get('https://api.sampleapis.com/movies/animation').then((response) => {
-    console.log('rsp data', response.data);
     dispatch(loadAllMoviesSuccess(response.data));
   });
 };
