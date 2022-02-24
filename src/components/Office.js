@@ -1,23 +1,27 @@
 import React from 'react';
 import useToggle from '@hooks/use-toggle';
+import OfficeWrapper, {
+  OfficeHeader,
+  OfficeContent,
+} from '@styled/OfficeWrapper';
 
 const Office = () => {
-  const { isOpen, toggle } = useToggle(true);
+  const { isOpen, toggle } = useToggle(false);
 
   return (
-    <div className="w-full md:w-2/3 collapse border border-base-300 bg-base-100 collapse-arrow mb-4">
-      <div onClick={toggle} className="collapse-title text-xl font-medium">
+    <OfficeWrapper>
+      <OfficeHeader onClick={toggle}>
         What is your head office located?
-      </div>
+      </OfficeHeader>
       {isOpen && (
-        <div className="p-4">
+        <OfficeContent>
           <p>
             We have multiple offices throughout Toronto. The main one is near
             Downtown , Toronto, neat Union Station.
           </p>
-        </div>
+        </OfficeContent>
       )}
-    </div>
+    </OfficeWrapper>
   );
 };
 

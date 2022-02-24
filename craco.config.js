@@ -11,6 +11,9 @@ module.exports = {
       '@hooks': path.join(path.resolve(__dirname, './src/hooks')),
       '@api': path.join(path.resolve(__dirname, './src/api')),
       '@state': path.join(path.resolve(__dirname, './src/state')),
+      '@styled': path.join(
+        path.resolve(__dirname, './src/components/styled-components')
+      ),
     },
   },
 };
