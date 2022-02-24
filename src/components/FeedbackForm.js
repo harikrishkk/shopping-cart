@@ -1,29 +1,23 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import NotificationBar from '@shared/NotificationBar';
+import { useForm } from 'react-hook-form';
+import SubmitButton from '@styled/SubmitButton';
 
 const FeedbackForm = () => {
-  const nameRef = useRef();
-  const emailRef = useRef();
-  const messageRef = useRef();
-  const [formSubmit, setFormSubmit] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm();
 
-  const reset = () => {
-    nameRef.current.value = null;
-    emailRef.current.value = null;
-    messageRef.current.value = null;
-  };
+  const [formSubmit, setFormSubmit] = useState(false);
 
   const closeNotification = () => {
     setFormSubmit(false);
   };
 
-  const onSubmit = () => {
-    const name = nameRef.current.value;
-    const email = emailRef.current.value;
-    const message = messageRef.current.value;
-    console.log('Submitting -> ', name, email, message);
-    setFormSubmit(true);
-    reset();
+  const onSubmit = (data) => {
+    console.log(data);
   };
   return (
     <div>
@@ -45,68 +39,72 @@ const FeedbackForm = () => {
               We promise! Each feedback is important to us.
             </p>
           </div>
-          <div className="lg:w-1/2 md:w-2/3 mx-auto">
-            <div className="flex flex-wrap -m-2">
-              <div className="p-2 w-1/2">
-                <div className="relative">
-                  <label
-                    htmlFor="name"
-                    className="leading-7 text-sm text-gray-600"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    ref={nameRef}
-                    id="name"
-                    name="name"
-                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  />
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="lg:w-1/2 md:w-2/3 mx-auto">
+              <div className="flex flex-wrap -m-2">
+                <div className="p-2 w-1/2">
+                  <div className="relative">
+                    <label
+                      htmlFor="name"
+                      className="leading-7 text-sm text-gray-600"
+                    >
+                      Name
+                    </label>
+                    <input
+                      {...register('username', { required: true })}
+                      className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                    {errors.username && (
+                      <span className="text-red-700">Username is required</span>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="p-2 w-1/2">
-                <div className="relative">
-                  <label
-                    htmlFor="email"
-                    className="leading-7 text-sm text-gray-600"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    ref={emailRef}
-                    name="email"
-                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  />
+                <div className="p-2 w-1/2">
+                  <div className="relative">
+                    <label
+                      htmlFor="email"
+                      className="leading-7 text-sm text-gray-600"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      {...register('email', { required: true })}
+                      className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                    {errors.email && (
+                      <span className="text-red-700">Email is required</span>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="p-2 w-full">
-                <div className="relative">
-                  <label
-                    htmlFor="message"
-                    className="leading-7 text-sm text-gray-600"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    ref={messageRef}
-                    name="message"
-                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                  ></textarea>
+                <div className="p-2 w-full">
+                  <div className="relative">
+                    <label
+                      htmlFor="message"
+                      className="leading-7 text-sm text-gray-600"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      {...register('message', { required: true })}
+                      className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                    ></textarea>
+                    {errors.message && (
+                      <span className="text-red-700">Message is required</span>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="p-2 w-full">
-                <button
-                  onClick={onSubmit}
-                  className="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-                >
-                  Submit
-                </button>
+                <div className="p-2 w-full">
+                  <SubmitButton
+                    $valid={isValid}
+                    onClick={handleSubmit(onSubmit)}
+                  >
+                    Submit
+                  </SubmitButton>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </section>
     </div>
