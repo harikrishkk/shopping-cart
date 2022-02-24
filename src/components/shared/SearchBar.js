@@ -7,7 +7,7 @@ const SearchBar = ({ onMovieFilter }) => {
   };
   useEffect(() => {
     onMovieFilter(search);
-  }, [search]);
+  }, [search, onMovieFilter]);
   return (
     <div>
       <input

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import NotificationBar from '@shared/NotificationBar';
 import FilterMovieDisplay from '@components/FilterMovieDisplay';
 import Banner from '@shared/Banner';
@@ -50,7 +50,7 @@ const Home = () => {
   // For current movie selection
   useEffect(() => {
     dispatch(setCurrentMovieId(movieId));
-  }, [movieId]);
+  }, [movieId, dispatch]);
 
   // For loading all movies
   useEffect(() => {
@@ -58,7 +58,7 @@ const Home = () => {
       return;
     }
     dispatch(loadAllMovies());
-  }, []);
+  }, [dispatch, isInitialLoad]);
 
   return (
     <div>

@@ -21,7 +21,7 @@ const AppUsers = () => {
     if (initialLoad) {
       dispatch(loadAllUsers());
     }
-  }, []);
+  }, [initialLoad, dispatch]);
 
   const paginate = () => {
     dispatch(paginateUsers());

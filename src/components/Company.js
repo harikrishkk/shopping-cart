@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 const Company = ({ header, content }) => {
   const [showMore, setShowMore] = React.useState(false);

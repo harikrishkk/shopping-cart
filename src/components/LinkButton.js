@@ -3,6 +3,7 @@ import React from 'react';
 const LinkButton = ({ handleClick }) => {
   return (
     <a
+      href="#"
       onClick={handleClick}
       className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0"
     >
