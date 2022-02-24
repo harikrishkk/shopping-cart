@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import MovieCard from '@components/MovieCard';
 import SearchBar from '@shared/SearchBar';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import CSSTransition from 'react-transition-group/CSSTransition';
 
 const FilterMovieDisplay = ({ movies, handleMovieSelect }) => {
   const [filteredMovies, setFilteredMovies] = useState([]);
@@ -19,18 +21,17 @@ const FilterMovieDisplay = ({ movies, handleMovieSelect }) => {
   return (
     <>
       <SearchBar onMovieFilter={onMovieFilter} />
-      <div className="flex flex-wrap -m-4">
+
+      <TransitionGroup className="flex flex-wrap -m-4">
         {filteredMovies.length > 0 &&
           filteredMovies.map((movie) => {
             return (
-              <MovieCard
-                key={movie.id}
-                movie={movie}
-                onMovieSelect={handleMovieSelect}
-              />
+              <CSSTransition key={movie.id} classNames="fade" timeout={300}>
+                <MovieCard movie={movie} onMovieSelect={handleMovieSelect} />
+              </CSSTransition>
             );
           })}
-      </div>
+      </TransitionGroup>
     </>
   );
 };

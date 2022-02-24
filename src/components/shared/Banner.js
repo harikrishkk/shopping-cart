@@ -1,29 +1,13 @@
 import React, { useContext } from 'react';
 import AuthContext from '@context/auth-context';
-
+import Logo from '@shared/Logo';
 const Banner = () => {
   const { isAuthenticated } = useContext(AuthContext);
   return (
     <div className="py-16 mx-auto sm:max-w-xl md:max-w-full lg:py-20 bg-indigo-600">
       <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
         <div className="flex flex-col mb-16 sm:text-center sm:mb-0">
-          <a href="/" className="mb-6 sm:mx-auto">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-indigo-50">
-              <svg
-                className="w-10 h-10 text-deep-purple-accent-400"
-                stroke="currentColor"
-                viewBox="0 0 52 52"
-              >
-                <polygon
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  fill="none"
-                  points="29 13 14 29 25 29 23 39 38 23 27 23"
-                />
-              </svg>
-            </div>
-          </a>
+          <Logo />
           <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
             <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none text-white sm:text-4xl md:mx-auto tracking-wider">
               <span className="relative inline-block">
